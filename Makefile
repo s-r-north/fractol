@@ -5,7 +5,8 @@ FLAGS := -Wall -Werror -Wextra
 LIBS := libs/minilibx_macos_10.11/libmlx.a\
        libs/libft/libft.a
 
-SRC_FILES := fractol.c
+SRC_FILES :=	fractol.c	draw.c	key_hook.c	mandelbrot.c	julia.c\
+				burning_ship.c
 
 SRCS := $(addprefix src/, $(SRC_FILES))
 
