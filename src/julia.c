@@ -11,15 +11,16 @@ static void	set_env(t_env *env)
 	}
 	env->jul = true;
 	env->lock = false;
-	env->maxiter = 64;
-	env->zoom = 1;
+	env->maxiter = 72;
+	env->zoom = 1.25;
 	env->xtrans = WIN_W / 2;
 	env->ytrans = WIN_H / 2;
 	env->x0 = 0;
 	env->y0 = 0;
-	env->m->x = 0;
-	env->m->y = 0;
+	env->m->x = 578;
+	env->m->y = 658;
 	env->func = &eval_pixel_jm;
+	env->reset = &set_env;
 }
 
 void		julia(t_env *env)

@@ -16,6 +16,8 @@ void	draw(t_env *env, int re)
 	while (++i < NTHREAD)
 		pthread_join(env->tid[i], NULL);
 	mlx_put_image_to_window(env->mlx->mlx, env->mlx->win, env->mlx->img, 0, 0);
+	help(env, env->mlx->help);
+	info(env, env->mlx->info);
 }
 
 void	*set_thread(void *arg)
@@ -63,10 +65,10 @@ int		eval_pixel_jm(t_env *env, double a, double b)
 
 	a = (a - env->xtrans) / ((WIN_W / 4) * env->zoom) + env->x0;
 	b = (b - env->ytrans) / ((WIN_H / 4) * env->zoom) + env->y0;
-	pr = env->jul ? ((((double)env->m->x - WIN_W) / (WIN_W / 2))) : a;
-	pi = env->jul ? ((((double)env->m->y - WIN_H) / (WIN_H / 2))) : b;
+	pr = env->jul ? (((double)env->m->x - WIN_W / 2) / (WIN_W / 4)) : a;
+	pi = env->jul ? (((double)env->m->y - WIN_H / 2) / (WIN_H / 4)) : b;
 	i = -1;
-	while (++i < env->maxiter && (a * a) + (b * b) <= 4)
+	while (++i < env->maxiter && (a * a) + (b * b) <= 16)
 	{
 		tmp = (a * a) - (b * b) + pr;
 		b = (2 * a * b) + pi;

@@ -2,13 +2,10 @@
 
 int		press_key(int keycode, t_env *env)
 {
-	// if (keycode == 15)
+	if (keycode == 15)
+		env->reset(env);
 	if (keycode == 53)
 		exit(0);
-	if (keycode == 8)
-		env->zoom *= 1.05;
-	if (keycode == 6)
-		env->zoom /= 1.05;
 	if (keycode == 125)
 		env->ytrans -= 5;
 	if (keycode == 126)
@@ -25,7 +22,8 @@ int		press_key(int keycode, t_env *env)
 		env->lock = env->lock ? false : true;
 	if (keycode == 34)
 		env->mlx->info = env->mlx->info ? false : true;
-	printf("%d\n", keycode);
+	if (keycode == 4)
+		env->mlx->help = env->mlx->help ? false : true;
 	draw(env, 1);
 	return (0);
 }
@@ -39,7 +37,7 @@ int		release_key(int keycode)
 
 int		mouse_pos(int x, int y, t_env *env)
 {
-	if (env->lock || (x == env->m->x && y == env->m->y))
+	if (env->lock || (env->m->x == x && env->m->y == y))
 		return (0);
 	env->m->x = x;
 	env->m->y = y;

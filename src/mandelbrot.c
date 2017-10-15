@@ -1,15 +1,5 @@
 #include "../includes/fractol.h"
 
-static void	info(t_env *env)
-{
-	if (!(env->mlx->info))
-	{
-		mlx_string_put(env->mlx->mlx, env->mlx->win, 20, 20, 0xffffff, "Press I for more information");
-		return ;
-	}
-
-}
-
 static void	set_env(t_env *env)
 {
 	t_mouse		*mouse;
@@ -29,6 +19,7 @@ static void	set_env(t_env *env)
 	env->m->x = env->xtrans;
 	env->m->y = env->ytrans;
 	env->func = &eval_pixel_jm;
+	env->reset = &set_env;
 }
 
 void		mandelbrot(t_env *env)
@@ -37,7 +28,6 @@ void		mandelbrot(t_env *env)
 	if (!env->mlx)
 		init_mlx_pointers(env, "Mandelbrot");
 	draw(env, 0);
-	info(env);
 	mlx_mouse_hook(env->mlx->win, mouse_hook, env);
 	mlx_hook(env->mlx->win, 2, 0, press_key, env);
 	mlx_hook(env->mlx->win, 3, 0, release_key, env);

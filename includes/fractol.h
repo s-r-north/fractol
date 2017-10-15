@@ -36,6 +36,7 @@ typedef struct		s_mlx
 	void			*img;
 	int				*data;
 	int				info;
+	int				help;
 }					t_mlx;
 
 typedef struct		s_env
@@ -58,11 +59,12 @@ typedef struct		s_env
 }					t_env;
 
 void	init_mlx_pointers(t_env *env, char *s);
+void	help(t_env *env, int toggle);
+void	info(t_env *env, int toggle);
 
 void	mandelbrot(t_env *env);
 void	julia(t_env *env);
 void	burning_ship(t_env *env);
-void	koch(t_env *env);
 
 void	draw(t_env *env, int re);
 void	*set_thread(void *arg);

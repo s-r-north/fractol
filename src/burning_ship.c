@@ -9,8 +9,8 @@ static int	eval_pixel_burn(t_env *env, double a, double b)
 
 	pr = (a - env->xtrans) / ((WIN_W / 4) * env->zoom) + env->x0;
 	pi = (b - env->ytrans) / ((WIN_H / 4) * env->zoom) + env->y0;
-	a = ((double)env->m->x - env->xtrans) / (WIN_W);
-	b = ((double)env->m->y - env->ytrans) / (WIN_H);
+	a = ((double)env->m->x) / (WIN_W);
+	b = ((double)env->m->y) / (WIN_H);
 	i = -1;
 	while (++i < env->maxiter && (a * a) + (b * b) <= 4)
 	{
@@ -40,6 +40,7 @@ static void	set_env(t_env *env)
 	env->m->x = env->xtrans;
 	env->m->y = env->ytrans;
 	env->func = &eval_pixel_burn;
+	env->reset = &set_env;
 }
 
 
@@ -47,7 +48,8 @@ static void	set_env(t_env *env)
 void	burning_ship(t_env *env)
 {
 	set_env(env);
-	init_mlx_pointers(env, "Burning Ship");
+	if (!env->mlx)
+		init_mlx_pointers(env, "Burning Ship");
 	draw(env, 0);
 	mlx_hook(env->mlx->win, 6, 0, mouse_pos, env);
 	mlx_mouse_hook(env->mlx->win, mouse_hook, env);
