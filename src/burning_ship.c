@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   burning_ship.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snorth <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/27 14:59:27 by snorth            #+#    #+#             */
+/*   Updated: 2017/06/20 19:43:20 by snorth           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fractol.h"
 
 static int	eval_pixel_burn(t_env *env, double a, double b)
 {
-	int i;
-	double pr;
-	double pi;
-	double tmp;
+	int		i;
+	double	pr;
+	double	pi;
+	double	tmp;
 
 	pr = (a - env->xtrans) / ((WIN_W / 4) * env->zoom) + env->x0;
 	pi = (b - env->ytrans) / ((WIN_H / 4) * env->zoom) + env->y0;
@@ -23,7 +35,7 @@ static int	eval_pixel_burn(t_env *env, double a, double b)
 
 static void	set_env(t_env *env)
 {
-	t_mouse		*mouse;
+	t_mouse	*mouse;
 
 	if (!env->m)
 	{
@@ -43,9 +55,7 @@ static void	set_env(t_env *env)
 	env->reset = &set_env;
 }
 
-
-
-void	burning_ship(t_env *env)
+void		burning_ship(t_env *env)
 {
 	set_env(env);
 	if (!env->mlx)

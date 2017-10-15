@@ -17,6 +17,21 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# define BUFF_SIZE 32
+# define MAX_FD 4096
+
+typedef struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
+
+enum
+{
+	false,
+	true
+};
 
 int					ft_atoi(const char *str);
 int					ft_toupper(int c);
@@ -81,16 +96,7 @@ double				ft_root(double nb, int root);
 double				ft_fmod(double nb, double div);
 void				*ft_realloc(void *ptr, size_t size);
 
-# define BUFF_SIZE 32
-# define MAX_FD 4096
 int					get_next_line(const int fd, char **line);
-
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
 
 t_list				*ft_lstnew(const void *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

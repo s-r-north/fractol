@@ -1,4 +1,14 @@
-// TODO: Look into mouse drag hooks
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snorth <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/27 14:59:27 by snorth            #+#    #+#             */
+/*   Updated: 2017/06/20 19:43:20 by snorth           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
@@ -20,14 +30,15 @@ void	help(t_env *env, int toggle)
 					Esc to exit", '\n');
 	i = -1;
 	while (++i < 9)
-		mlx_string_put(env->mlx->mlx, env->mlx->win, 20, 20 * (i + 1), 0xffffff, s[i]);
+		mlx_string_put(env->mlx->mlx, env->mlx->win, 20, 20 * (i + 1), 0xffffff,
+				s[i]);
 }
 
 void	info(t_env *env, int toggle)
 {
-	int i;
-	char *as;
-	char **s;
+	int		i;
+	char	*as;
+	char	**s;
 
 	if (!toggle)
 		return ;
@@ -38,8 +49,8 @@ void	info(t_env *env, int toggle)
 			Center: (%lf, %lf)\n\
 			Current Zoom: %lf",
 			env->m->x, env->m->y, ((double)env->m->x - WIN_W / 2) / (WIN_W / 4),
-			((double)env->m->y - WIN_H / 2) / (WIN_H / 4), env->maxiter, env->x0,
-			env->y0, env->zoom);
+			((double)env->m->y - WIN_H / 2) / (WIN_H / 4), env->maxiter,
+			env->x0, env->y0, env->zoom);
 	s = ft_strsplit(as, '\n');
 	free(as);
 	i = -1;
@@ -51,9 +62,9 @@ void	info(t_env *env, int toggle)
 void	init_mlx_pointers(t_env *env, char *s)
 {
 	t_mlx	*tmp;
-	int e;
-	int bpp;
-	int width;
+	int		e;
+	int		bpp;
+	int		width;
 
 	tmp = (t_mlx*)malloc(sizeof(t_mlx));
 	tmp->mlx = mlx_init();
@@ -66,17 +77,15 @@ void	init_mlx_pointers(t_env *env, char *s)
 	tmp->info = 0;
 	tmp->help = 1;
 	env->mlx = tmp;
-	// printf("tmp:%p, %p, %p, %p\n", tmp->mlx, tmp->win, tmp->img, tmp->data); //Good
 }
 
 int		main(int ac, char **av)
 {
-
 	t_env	env;
 
 	if (ac != 2)
 	{
-		write(1, "Usage: ./fractol -[M|J|B]\n", 28);
+		write(1, "Usage: ./fractol -[M|J|B]\n", 26);
 		exit(0);
 	}
 	env.m = NULL;
@@ -90,7 +99,7 @@ int		main(int ac, char **av)
 		burning_ship(&env);
 	else
 	{
-		write(1, "Usage: ./fractol -[M|J|B]\n", 28);
+		write(1, "Usage: ./fractol -[M|J|B]\n", 26);
 		exit(0);
 	}
 }

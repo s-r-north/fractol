@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snorth <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/27 14:59:27 by snorth            #+#    #+#             */
+/*   Updated: 2017/06/20 19:43:20 by snorth           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRACTOL_H
 
 # define FRACTOL_H
@@ -15,12 +27,6 @@
 # define WIN_W 1024
 # define WIN_H 1024
 # define BOUND_MAX 1024
-
-typedef enum		s_bool
-{
-	false,
-	true
-}					t_bool;
 
 typedef struct		s_mouse
 {
@@ -58,24 +64,23 @@ typedef struct		s_env
 	t_mouse			*m;
 }					t_env;
 
-void	init_mlx_pointers(t_env *env, char *s);
-void	help(t_env *env, int toggle);
-void	info(t_env *env, int toggle);
+void				init_mlx_pointers(t_env *env, char *s);
+void				help(t_env *env, int toggle);
+void				info(t_env *env, int toggle);
 
-void	mandelbrot(t_env *env);
-void	julia(t_env *env);
-void	burning_ship(t_env *env);
+void				mandelbrot(t_env *env);
+void				julia(t_env *env);
+void				burning_ship(t_env *env);
 
-void	draw(t_env *env, int re);
-void	*set_thread(void *arg);
-void	img_place(t_env *env, int y1, int y2);
-int		eval_pixel_jm(t_env *env, double a, double b);
-int		color_pixel(int hue, int max);
+void				draw(t_env *env, int re);
+void				*set_thread(void *arg);
+void				img_place(t_env *env, int y1, int y2);
+int					eval_pixel_jm(t_env *env, double a, double b);
+int					color_pixel(int hue, int max);
 
-
-int		mouse_hook(int mbutton, int x, int y, t_env *env);
-int		mouse_pos(int x, int y, t_env *env);
-int		press_key(int keycode, t_env *env);
-int		release_key(int keycode);
+int					mouse_hook(int mbutton, int x, int y, t_env *env);
+int					mouse_pos(int x, int y, t_env *env);
+int					press_key(int keycode, t_env *env);
+int					release_key(int keycode);
 
 #endif
