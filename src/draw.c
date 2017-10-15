@@ -63,8 +63,8 @@ int		eval_pixel_jm(t_env *env, double a, double b)
 
 	a = (a - env->xtrans) / ((WIN_W / 4) * env->zoom) + env->x0;
 	b = (b - env->ytrans) / ((WIN_H / 4) * env->zoom) + env->y0;
-	pr = ((((double)env->m->x - WIN_W) / (WIN_W / 2)));
-	pi = ((((double)env->m->y - WIN_H) / (WIN_H / 2)));
+	pr = env->jul ? ((((double)env->m->x - WIN_W) / (WIN_W / 2))) : a;
+	pi = env->jul ? ((((double)env->m->y - WIN_H) / (WIN_H / 2))) : b;
 	i = -1;
 	while (++i < env->maxiter && (a * a) + (b * b) <= 4)
 	{

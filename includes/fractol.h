@@ -51,6 +51,7 @@ typedef struct		s_env
 	double			xtrans;
 	double			ytrans;
 	int				(*func)(struct s_env *env, double x, double y);
+	void			(*reset)(struct s_env *env);
 	pthread_t		tid[NTHREAD];
 	int				thread;
 	t_mouse			*m;
