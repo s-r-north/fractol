@@ -46,7 +46,7 @@ static void	set_env(t_env *env)
 	env->maxiter = 64;
 	env->zoom = 1;
 	env->xtrans = 1.25 * (WIN_W / 2);
-	env->ytrans = WIN_H / 2;
+	env->ytrans = 1.5 * (WIN_H / 2);
 	env->x0 = 0;
 	env->y0 = 0;
 	env->m->x = env->xtrans;
